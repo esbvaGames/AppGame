@@ -1,9 +1,4 @@
-# AppGame
-Estructura de interface GUI para SFML.-
-
-Codeblock 2020.- SFML 2.5.1.- Mingw 9.0.2 - 64bits.-
-
-
+/*
  autor: esbva, 11-08-2020
  
  Este archivo es una forma de PSeudo diagrama, de la estructura de los controles
@@ -16,11 +11,10 @@ Codeblock 2020.- SFML 2.5.1.- Mingw 9.0.2 - 64bits.-
  Toda colaboracion en este documento es bienvenida.-
  
  by esbva.-
- 
+*/
 
 
 // Modulo de Pantalla GUI
-
 namespace scr {
 	
 	//. Esilos con colores predeterminados
