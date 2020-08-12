@@ -6,9 +6,9 @@ Codeblock 2020.- SFML 2.5.1.- Mingw 9.0.2 - 64bits.-
 
  autor: esbva, 11-08-2020
  
- Este archivo es una forma de PSeudo diagrama, de la estructura de los controles
+ Este archivo es una forma de Pseudo diagrama, de la estructura de los controles
  y botones que se necesitan en una interface grafica, aunque tiene una tendencia
- que se identifican con el lenguaje C/C++, la intension no es representar del 
+ que se identifican con el lenguaje C/C++, la intencion no es representar del 
  todo su sintaxis, es mas bien la expresion de la idea dentro de la estructura
  antes de llevar a cabo implementacion de la programacion correcta.
  Esta pensado para que los colaboradores les sea mas facil comprender en que lugar 
