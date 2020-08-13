@@ -71,6 +71,8 @@ int main()
 
          win.display();
       }
+      delete myScreen;
+      myScreen = NULL;
 
 
     }

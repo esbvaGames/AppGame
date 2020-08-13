@@ -21,6 +21,9 @@ Screen::Screen()
 Screen::~Screen()
 {
    //dtor
+   TablaWidgets.clear();
+   QueueEventos.clear();
+
 }
 
 sf::Font Screen::getFontBase(){
