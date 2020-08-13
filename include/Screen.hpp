@@ -2,6 +2,9 @@
 #define SCREEN_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
+#include <iostream>
 #include <sstream>
 #include <map>
 
@@ -129,15 +132,21 @@ enum EVENTS {
    on_Disconnect,
 };
 
+enum CTYPES {
+   CLabel, CButton, CButtonRadio, CButtonCheck, CButtonTexture //.
+};
+
+
 typedef void (*callback) (void *Sender, EVENTS evn);
 
 class Widget;
+class Label;
 
 struct Events {
-   std::string   idClass;
-   Widget   *widget;
-   EVENTS   *evn;
-   callback *command;
+   std::string    idClass;
+   Widget         *widget;
+   EVENTS         *evn;
+   callback       *command;
 };
 
 
@@ -178,6 +187,16 @@ class Screen
       void setEnabled(bool state);
       bool is_Enabled();
 
+      void setFontBase(sf::Font font, float Scalar);
+      sf::Font getFontBase();
+
+      //... FUNCIONES DE CREACION DE WIDGETS ...
+      Label *Create_Label(float cx, float cy, std::string Texto);
+
+
+      bool Widget_add(std::string idKey, Widget *widget);
+      bool Widget_update(std::string idKey, Widget *widget);
+      bool Widget_remove(std::string idKey);
 
    protected:
       bool Connect(EVENTS evt, callback *, void *argument);
@@ -186,7 +205,9 @@ class Screen
 
    private:
       std::map<std::string, Widget *> TablaWidgets;
+      std::map<std::string, Widget *>::iterator iterWidget;
       std::map<std::string, Events *> QueueEventos;
+      std::map<std::string, Events *>::iterator ev_it;
 
       COORD   position;    //. Pisicion en coordenadas del Screen
       STYLES  Styles;      //. Styles predeterminados de Colores
@@ -206,9 +227,13 @@ class Screen
       DIMENSION dimMaxima;       //. Dimensiones del Screen Maximo
       DIMENSION factorMargen;    //. Porcentaje margen: centro(0.5, 0.5, 0.5, 0.5)
 
-      sf::Font     font;         //. Fuente predeterminada
+      sf::Font     fontBase;     //. Fuente predeterminada
+      std::string  fontFile;     //. Archivo fuente-Predeterminada
       float        fontScale;    //. Escalar Proporcional a la Fuente Activa
-      std::string  pathConfig;   //. Ruta a los Assetes Predeterminados
+      std::string  pathAssets;   //. Ruta a los Assetes Predeterminados
 };
+
+
+
 
 #endif // SCREEN_HPP

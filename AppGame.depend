@@ -1,27 +1,34 @@
 # depslib dependency file v1.0
-1597185600 source:c:\documents\codeblocks\appgame\main.cpp
+1597341188 source:c:\documents\codeblocks\appgame\main.cpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Screen.hpp"
-
-1597188348 source:c:\documents\codeblocks\appgame\src\screen.cpp
 	"Widget.hpp"
-	"Screen.hpp"
+	"Label.hpp"
 
-1597189543 c:\documents\codeblocks\appgame\include\screen.hpp
+1597348476 source:c:\documents\codeblocks\appgame\src\screen.cpp
+	"Screen.hpp"
+	"Widget.hpp"
+	"Label.hpp"
+
+1597329421 c:\documents\codeblocks\appgame\include\screen.hpp
 	<SFML/Graphics.hpp>
+	<SFML/Window.hpp>
+	<iostream>
 	<sstream>
 	<map>
 
-1597188282 source:c:\documents\codeblocks\appgame\src\label.cpp
-	"Label.hpp"
+1597347897 source:c:\documents\codeblocks\appgame\src\label.cpp
+	<label.hpp>
 
-1597188281 c:\documents\codeblocks\appgame\include\label.hpp
+1597347581 c:\documents\codeblocks\appgame\include\label.hpp
+	<Screen.hpp>
 	<Widget.hpp>
 
-1597188235 c:\documents\codeblocks\appgame\include\widget.hpp
+1597287958 c:\documents\codeblocks\appgame\include\widget.hpp
+	<Screen.hpp>
 
-1597188235 source:c:\documents\codeblocks\appgame\src\widget.cpp
-	"Widget.hpp"
+1597288307 source:c:\documents\codeblocks\appgame\src\widget.cpp
+	<widget.hpp>
 
