@@ -39,16 +39,17 @@ class Widget
       void setKeyName(std::string keyName);
 
    protected:
+      STYLES         styles;
 
    private:
       COORD          position;
-      STYLES         styles;
       CTYPES         idTypes;      //. idType dynamic_cast<Derived*> (&Base)
       std::string    KeyName;
 
       bool           visible;
       bool           enabled;
       bool           focused;
+      bool           toogled;      //. Boton de Toques (on | off)
 
       DIMENSION      dimActual;
       DIMENSION      dimMinima;

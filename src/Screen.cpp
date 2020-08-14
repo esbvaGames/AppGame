@@ -81,8 +81,8 @@ bool Screen::Widget_remove(std::string idKey){
 //... FUNCIONES DE CREACION DE WIDGETS ...
 // TODO (esbva#1#): Agregar escala de la etiqueta
 
-Label *Screen::Create_Label(float cx, float cy, std::string Texto){
-   Label *label = new Label(cx, cy, Texto, this->fontBase);
+Label *Screen::Create_Label(float cx, float cy, std::string Texto, float Scale = 10.0f){
+   Label *label = new Label(cx, cy, Texto, this->fontBase, Scale);
    return label;
 }
 

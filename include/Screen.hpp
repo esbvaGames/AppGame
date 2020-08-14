@@ -136,6 +136,9 @@ enum CTYPES {
    CLabel, CButton, CButtonRadio, CButtonCheck, CButtonTexture //.
 };
 
+enum STATES {
+   Normal, Select, Pressed, Released, Disable
+};
 
 typedef void (*callback) (void *Sender, EVENTS evn);
 
@@ -191,7 +194,7 @@ class Screen
       sf::Font getFontBase();
 
       //... FUNCIONES DE CREACION DE WIDGETS ...
-      Label *Create_Label(float cx, float cy, std::string Texto);
+      Label *Create_Label(float cx, float cy, std::string Texto, float Scale);
 
 
       bool Widget_add(std::string idKey, Widget *widget);

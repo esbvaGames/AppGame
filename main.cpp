@@ -7,9 +7,10 @@
 #include "Screen.hpp"
 #include "Widget.hpp"
 #include "Label.hpp"
+#include "Button.hpp"
 
-///////////////////////////////////////////////////7
-Label    *myLabel = NULL;
+///////////////////////////////////////////////////
+Label    *myLabel  = NULL;
 sf::Font  myFont;
 sf::Text  prompt;
 
@@ -40,10 +41,23 @@ int main()
 
     myScreen = new Screen();
 
-    myLabel = myScreen->Create_Label(40,40, "SFML GUI Interface");
+    myLabel = myScreen->Create_Label(40,40, "SFML GUI Interface", 20.0f);
     //... Otros ajustes ...
     myScreen->Widget_add("tittle", myLabel);
-    //myScreen->Display( &win );
+    Label *lbName = myScreen->Create_Label(40,80, "Texto de Etiqueta", 12.0);
+    myScreen->Widget_add("subtext", lbName);
+
+   Button *myButton = new Button(40,100, 80, 25, "my Button", 10.0);
+
+// TODO (esbva#1#): Modos Pendientes
+   /*
+   myButton->setVisible( true | false )
+   myButton->setEnabled( true | false )
+   myButton->setToogled( true | false )
+
+   */
+
+
 
     //. Pruebas locales antes de encapsular
     /*
@@ -63,10 +77,14 @@ int main()
                win.close();
                running = false;
             }
+            myButton->MouseInRect(&win);
          }
          win.clear(sf::Color(0,0,0));
 
          //TestDisplay_01(&win);
+         myButton->Display(&win);
+
+         //Display en el Contenedor-Screen
          myScreen->Display(&win);
 
          win.display();

@@ -9,7 +9,7 @@ class Label : public Widget
 {
    public:
       Label();
-      Label(float cx, float cy, std::string, sf::Font);
+      Label(float, float, std::string, sf::Font, float Scale=10.0f);
       virtual ~Label();
 
       void Display(sf::RenderWindow *win);

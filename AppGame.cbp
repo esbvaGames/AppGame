@@ -43,10 +43,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Button.hpp" />
 		<Unit filename="include/Label.hpp" />
 		<Unit filename="include/Screen.hpp" />
 		<Unit filename="include/Widget.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/Label.cpp" />
 		<Unit filename="src/Screen.cpp" />
 		<Unit filename="src/Widget.cpp" />
