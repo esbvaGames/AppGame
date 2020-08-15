@@ -17,10 +17,7 @@ class Label : public Widget
 
    protected:
 
-
    private:
-      sf::Text    prompt;     //. Texto de la etiqueta
-      sf::Font    myFont;     //. Debe conservar la Fuente de Creacion
 
 };
 

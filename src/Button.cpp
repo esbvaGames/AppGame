@@ -4,13 +4,15 @@
 Button::Button()
 {
    //ctor
+   set_idType(CTYPES::CButton);
 }
 
 Button::~Button()
 {
    //dtor
 }
-Button::Button(float cx, float cy, float width, float height, std::string texto, float Scale)
+Button::Button(float cx, float cy, float width, float height, \
+               std::string texto, sf::Font myFont, float Scale)
 {
    rcShape.setSize(sf::Vector2f(width, height));
    rcShape.setFillColor(styles.ColorNormal_alpha);
@@ -19,6 +21,17 @@ Button::Button(float cx, float cy, float width, float height, std::string texto,
    rcShape.setPosition(cx, cy);
 
    rcForma = sf::Rect<float>(cx, cy, width, height);
+
+   this->Scale = Scale;
+   this->myFont = myFont;
+   prompt = sf::Text(texto, this->myFont, this->Scale);
+   prompt.setColor(styles.ColorNormal);
+
+   float px = (prompt.getLocalBounds().width)  - (width * 0.5);
+   float py = (prompt.getLocalBounds().height) - (height* 0.5);
+
+   prompt.setPosition(cx + px , cy + py);
+   set_idType(CTYPES::CButton);
 }
 
 void Button::MouseInRect(sf::RenderWindow *win)
@@ -55,25 +68,31 @@ void Button::Display(sf::RenderWindow *win)
 {
    switch(State){
    case STATES::Select:
+      prompt.setColor(styles.ColorSelect);
       rcShape.setOutlineColor(styles.ColorSelect);
       rcShape.setFillColor(styles.ColorSelect_alpha);
       break;
 
    case STATES::Pressed:
+      prompt.setColor(styles.ColorActive);
       rcShape.setOutlineColor(styles.ColorActive);
       rcShape.setFillColor(styles.ColorActive_alpha);
       break;
 
    case STATES::Disable:
+      prompt.setColor(styles.ColorDisabled);
       rcShape.setOutlineColor(styles.ColorDisabled);
       rcShape.setFillColor(styles.ColorDisable_alpha);
       break;
 
    default:
+      prompt.setColor(styles.ColorNormal);
       rcShape.setOutlineColor(styles.ColorNormal);
       rcShape.setFillColor(styles.ColorNormal_alpha);
       break;
 
    }
    win->draw(rcShape);
+   win->draw(prompt);
+
 }

@@ -10,9 +10,13 @@
 #include "Button.hpp"
 
 ///////////////////////////////////////////////////
+
 Label    *myLabel  = NULL;
 sf::Font  myFont;
 sf::Text  prompt;
+
+
+///////////////////////////////////////////////////
 
 void TestDisplay_02(sf::RenderWindow *win){
    win->draw(prompt);
@@ -29,7 +33,12 @@ bool running = false;
 
 int main()
 {
+
+
+    //. Crea la Window principal
     sf::RenderWindow win(sf::VideoMode(800, 480), "AppGame");
+    //. No sera dibujada a 60fps, como un juego.-
+    win.setFramerateLimit(30);
 
     running = true;
 
@@ -41,13 +50,15 @@ int main()
 
     myScreen = new Screen();
 
-    myLabel = myScreen->Create_Label(40,40, "SFML GUI Interface", 20.0f);
-    //... Otros ajustes ...
+    myLabel = Create_Label(myScreen, 40,40, "SFML GUI Interface", 20.0f);
     myScreen->Widget_add("tittle", myLabel);
-    Label *lbName = myScreen->Create_Label(40,80, "Texto de Etiqueta", 12.0);
+
+    Label *lbName = Create_Label(myScreen, 40,80, "Texto de Etiqueta", 16.0f);
     myScreen->Widget_add("subtext", lbName);
 
-   Button *myButton = new Button(40,100, 80, 25, "my Button", 10.0);
+    Button *myButton = Create_Button(myScreen, 40,120, "boton", 16.0f);
+    myScreen->Widget_add("btnData", myButton);
+
 
 // TODO (esbva#1#): Modos Pendientes
    /*
@@ -77,20 +88,26 @@ int main()
                win.close();
                running = false;
             }
-            myButton->MouseInRect(&win);
+            //myButton->MouseInRect(&win);
+            myScreen->Update(&win);
          }
          win.clear(sf::Color(0,0,0));
 
          //TestDisplay_01(&win);
-         myButton->Display(&win);
+         //myButton->Display(&win);
 
          //Display en el Contenedor-Screen
          myScreen->Display(&win);
 
          win.display();
       }
+      delete myButton;
+      myButton = NULL;
+
       delete myScreen;
       myScreen = NULL;
+
+
 
 
     }

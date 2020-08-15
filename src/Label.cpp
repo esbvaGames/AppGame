@@ -14,14 +14,12 @@ Label::~Label()
 
 Label::Label(float cx, float cy, std::string texto, sf::Font fontBase, float Scale)
 {
-   myFont = fontBase;
-   //if(!myFont.loadFromFile("./assets/acme.ttf")){
-   //   std::cout << "Error Leyendo: acme.ttf" << std::endl;
-   //}
-   prompt = sf::Text(texto, myFont, Scale);
+   this->fontBase = fontBase;
+   this->fontScale = Scale;
+
+   prompt = sf::Text(texto, this->fontBase, this->fontScale);
    prompt.setPosition(cx, cy);
    set_idType(CTYPES::CLabel);
-
 }
 
 

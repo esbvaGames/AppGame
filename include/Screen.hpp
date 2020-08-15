@@ -4,9 +4,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include <cassert>
 #include <iostream>
 #include <sstream>
 #include <map>
+
+#define LOG_INFO(msg)  std::cout << "INFO.: " << msg << std::endl
+#define LOG_WARN(msg)  std::clog << "WARN.: " << msg << std::endl
+#define LOG_ERRN(msg)  std::cerr << "ERROR: " << msg << std::endl
 
 struct COORD {
    float x, y;
@@ -144,6 +149,8 @@ typedef void (*callback) (void *Sender, EVENTS evn);
 
 class Widget;
 class Label;
+class Button;
+
 
 struct Events {
    std::string    idClass;
@@ -160,7 +167,7 @@ class Screen
       virtual ~Screen();
 
       void Display(sf::RenderWindow *win);
-      void Update();
+      void Update(sf::RenderWindow *win);
       void Resize();
 
       void MouseEntered();
@@ -193,13 +200,14 @@ class Screen
       void setFontBase(sf::Font font, float Scalar);
       sf::Font getFontBase();
 
-      //... FUNCIONES DE CREACION DE WIDGETS ...
-      Label *Create_Label(float cx, float cy, std::string Texto, float Scale);
-
 
       bool Widget_add(std::string idKey, Widget *widget);
       bool Widget_update(std::string idKey, Widget *widget);
       bool Widget_remove(std::string idKey);
+
+      //... FUNCIONES DE CREACION DE WIDGETS ...
+      friend Label  *Create_Label(Screen *m, float, float, std::string, float);
+      friend Button *Create_Button(Screen *m, float, float, std::string, float);
 
    protected:
       bool Connect(EVENTS evt, callback *, void *argument);
@@ -235,8 +243,5 @@ class Screen
       float        fontScale;    //. Escalar Proporcional a la Fuente Activa
       std::string  pathAssets;   //. Ruta a los Assetes Predeterminados
 };
-
-
-
 
 #endif // SCREEN_HPP

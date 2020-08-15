@@ -11,7 +11,7 @@ class Button : public Widget
       Button();
       virtual ~Button();
 
-      Button(float, float, float, float, std::string, float Scale=10.0f);
+      Button(float, float, float, float, std::string, sf::Font, float Scale=16.0f);
       virtual void Display(sf::RenderWindow *);
 
       void MouseInRect(sf::RenderWindow *win);
@@ -19,6 +19,8 @@ class Button : public Widget
    protected:
 
    private:
+      sf::Font            myFont;
+      float               Scale;
       STATES              State;
       sf::Rect<float>     rcForma;
       sf::RectangleShape  rcShape;

@@ -26,8 +26,9 @@ class Widget
       bool setFocused(bool state);
       bool is_focused();
 
-      void setFont(std::string filePath, float Scale);
-      bool getFont(sf::Font &fuente, float &Scale);
+      void newFont(std::string fileFont, float fontScale = 16.0f);
+      void setFont(sf::Font fontBase, float fontScale = 16.0f);
+      sf::Font getFont(float &fontScale);
 
       std::string toString();
 
@@ -41,10 +42,17 @@ class Widget
    protected:
       STYLES         styles;
 
+      sf::Text       prompt;        //. Nombre para Mostrar si es requerido
+      sf::Font       fontBase;
+      float          fontScale;
+      std::string    fileFont;      //. Archivo de la fuente Base
+
+
    private:
       COORD          position;
       CTYPES         idTypes;      //. idType dynamic_cast<Derived*> (&Base)
       std::string    KeyName;
+
 
       bool           visible;
       bool           enabled;
@@ -58,10 +66,9 @@ class Widget
       Widget         *FocusNext;
       Widget         *FocusPrevio;
 
-      sf::Font       fontBase;      //. Fuente de letra base
-      std::string    pathAssets;    //. Recursos de la GUI.
 
-      std::string    fileName;      //. Archivo
+      std::string    pathAssets;    //. Recursos de la GUI.
+      std::string    fileToSave;      //. Archivo
 
 
 };
