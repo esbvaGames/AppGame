@@ -14,6 +14,7 @@
 Label    *myLabel  = NULL;
 sf::Font  myFont;
 sf::Text  prompt;
+Screen   *myScreen = NULL;
 
 
 ///////////////////////////////////////////////////
@@ -27,8 +28,30 @@ void TestDisplay_01(sf::RenderWindow *win){
    //myLabel->Display(win);
 }
 
+void myFuncion(std::string idKey, EVENTS *evn){
+   LOG_WARN("LLAMADA DESDE: " << idKey);
+   // Para recuperar el Sender
+   Widget *wdt = myScreen->Search(idKey);
+   // Para ubicar el tipo de la class y convertir
+   if(wdt->get_idType() == CTYPES::CButton){
+      Button *btn = (Button *)wdt;
+      //. Para imprimir los datos
+      LOG_INFO( btn->toString() );
+   }
+
+}
+
+void myMouseEntered(std::string idKey, EVENTS *evn){
+   LOG_WARN("Llamanda al MouseEntered desde: " << idKey);
+
+}
+
+void myMouseExited(std::string idKey, EVENTS *evn){
+   LOG_WARN("Llamada a MouseExited desde: " << idKey);
+   LOG_WARN("Argumantos: " << evn->arguments);
+}
+
 ///////////////////////////////////////////////////
-Screen   *myScreen = NULL;
 bool running = false;
 
 int main()
@@ -57,6 +80,13 @@ int main()
     myScreen->Widget_add("subtext", lbName);
 
     Button *myButton = Create_Button(myScreen, 40,120, "boton", 16.0f);
+    myButton->Connect(Event::on_Pressed, (callback*)&myFuncion, "8489:yryy:59069");
+    myButton->Connect(Event::on_MouseEntered, (callback*)&myMouseEntered, "arg1,arg2,arg3");
+    myButton->Connect(Event::on_MouseExited, (callback*)&myMouseExited, "111,222,333,444");
+
+
+
+
     myScreen->Widget_add("btnData", myButton);
 
 

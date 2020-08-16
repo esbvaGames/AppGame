@@ -4,6 +4,7 @@
 Button::Button()
 {
    //ctor
+   MouseEnter = false;
    set_idType(CTYPES::CButton);
 }
 
@@ -41,10 +42,18 @@ void Button::MouseInRect(sf::RenderWindow *win)
 
    if(rcForma.contains( sf::Vector2<float>(px, py) )){
       State = STATES::Select;
+      if(!MouseEnter){
+         MouseEnter = true;
+         on_CallFunction(Event::on_MouseEntered);
+         //LOG_WARN("Mouse-Entered");
+      }
+
+
       if(sf::Mouse::isButtonPressed( sf::Mouse::Left )){
          std::cout << "Pressed Left"   << std::endl;
          State = STATES::Pressed;
-// TODO (esbva#1#): Enviar eventos al queue
+      //. Llama la funcion apuntada en (on_Pressed)
+         on_CallFunction(Event::on_Pressed);
 
       } else if(sf::Mouse::isButtonPressed( sf::Mouse::Right )){
          std::cout << "Pressed Right"  << std::endl;
@@ -59,6 +68,12 @@ void Button::MouseInRect(sf::RenderWindow *win)
 
 
    } else {
+      if(MouseEnter){
+         MouseEnter = false;
+         on_CallFunction(Event::on_MouseExited);
+         //LOG_WARN("Mouse Exited");
+
+      }
       State = STATES::Normal;
    }
    //std::cout << "(" << px <<","<< py <<")" << std::endl;
@@ -94,5 +109,22 @@ void Button::Display(sf::RenderWindow *win)
    }
    win->draw(rcShape);
    win->draw(prompt);
+
+}
+
+
+std::string Button::toString()
+{
+   std::ostringstream buffer;
+   buffer << "Button: {" \
+          << KeyName << "," \
+          << prompt.getString().toAnsiString() << "," \
+          << "(" << prompt.getScale().x << "," << prompt.getScale().y << ")," \
+          << rcForma.left << "," \
+          << rcForma.top  << "," \
+          << rcForma.width << "," \
+          << rcForma.height << "}";
+
+   return buffer.str();
 
 }

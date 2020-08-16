@@ -91,8 +91,20 @@ bool Screen::Widget_remove(std::string idKey){
    return ioResult;
 }
 
+Widget* Screen::Search(std::string idKey)
+{
+   iterWidget = TablaWidgets.find(idKey);
+   if(iterWidget != TablaWidgets.end()){
+      return (Widget*)iterWidget->second;
+   }
+   return NULL;
+}
+
+
+
+
+
 //... FUNCIONES DE CREACION DE WIDGETS ...
-// TODO (esbva#1#): Agregar escala de la etiqueta
 
 Label *Create_Label(Screen *scr, float cx, float cy, std::string Texto, float Scale = 10.0f){
    Label *label = new Label(cx, cy, Texto, scr->fontBase, Scale);

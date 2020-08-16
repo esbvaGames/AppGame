@@ -15,8 +15,10 @@ class Button : public Widget
       virtual void Display(sf::RenderWindow *);
 
       void MouseInRect(sf::RenderWindow *win);
+      std::string toString();
 
    protected:
+      bool     MouseEnter;
 
    private:
       sf::Font            myFont;

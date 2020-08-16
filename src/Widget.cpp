@@ -46,4 +46,38 @@ CTYPES Widget::get_idType(){
    return this->idTypes;
 }
 
+bool Widget::Connect(Event idEvent, callback* command, std::string argument)
+{
+   iterEventos = Eventos.find(idEvent);
+   if(iterEventos == Eventos.end()){
+      EVENTS *evn = new EVENTS(idEvent, command, argument);
+      Eventos.insert(std::make_pair(idEvent, evn));
+      return true;
+   } else {
+      LOG_ERRN( "Evento: " << (int)idEvent << " ya fue asignado");
+   }
+   return false;
+}
+
+bool Widget::Disconnect(Event idEvent)
+{
+   iterEventos = Eventos.find(idEvent);
+   if(iterEventos != Eventos.end()){
+      Eventos.erase(iterEventos);
+      return true;
+   }
+   return false;
+}
+
+
+void Widget::on_CallFunction(Event idEvent)
+{
+   iterEventos = Eventos.find(idEvent);
+   if(iterEventos != Eventos.end()){
+      ((EVENTS*)iterEventos->second)->command(KeyName, iterEventos->second);
+   }
+}
+
+
+
 

@@ -10,6 +10,7 @@ class Widget
       virtual ~Widget();
 
       virtual void Display(sf::RenderWindow *win) = 0;
+      virtual std::string toString() = 0;
 
       void setPosition(COORD m);
       COORD getPosition();
@@ -30,14 +31,17 @@ class Widget
       void setFont(sf::Font fontBase, float fontScale = 16.0f);
       sf::Font getFont(float &fontScale);
 
-      std::string toString();
-
 
       void set_idType(CTYPES idType);
       CTYPES get_idType();
 
       std::string getKeyName();
       void setKeyName(std::string keyName);
+
+      bool Connect(Event idEvent, callback *command, std::string argument);
+      bool Disconnect(Event idEvent);
+
+      void on_CallFunction(Event idEvent);
 
    protected:
       STYLES         styles;
@@ -47,12 +51,9 @@ class Widget
       float          fontScale;
       std::string    fileFont;      //. Archivo de la fuente Base
 
-
-   private:
       COORD          position;
       CTYPES         idTypes;      //. idType dynamic_cast<Derived*> (&Base)
       std::string    KeyName;
-
 
       bool           visible;
       bool           enabled;
@@ -66,6 +67,11 @@ class Widget
       Widget         *FocusNext;
       Widget         *FocusPrevio;
 
+
+   private:
+      //. idKey = "on_Update", [ Events { idEvent, myFuncion, arguments } ]
+      std::map<int, EVENTS *> Eventos;
+      std::map<int, EVENTS *>::iterator iterEventos;
 
       std::string    pathAssets;    //. Recursos de la GUI.
       std::string    fileToSave;      //. Archivo

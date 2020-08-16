@@ -120,7 +120,7 @@ struct STYLES {
 };
 
 
-enum EVENTS {
+enum Event {
    on_Create,
    on_Destroy,
    on_Update,
@@ -145,19 +145,26 @@ enum STATES {
    Normal, Select, Pressed, Released, Disable
 };
 
-typedef void (*callback) (void *Sender, EVENTS evn);
-
 class Widget;
 class Label;
 class Button;
 
+//. El objeto que envia se ubica por el idKey de la tabla
+struct EVENTS;
+typedef void (callback) (std::string idKey, EVENTS *evn);
 
-struct Events {
-   std::string    idClass;
-   Widget         *widget;
-   EVENTS         *evn;
-   callback       *command;
+struct EVENTS {
+   Event           idEvent;     //. El evento
+   callback       *command;     //. La funcion Apuntada
+   std::string    arguments;    //. Lista de Argumentos
+
+   EVENTS( Event idEvent, callback *myCommand, std::string arguments){
+      this->idEvent = idEvent;
+      this->command = *myCommand;
+      this->arguments = arguments;
+   }
 };
+
 
 
 class Screen
@@ -210,15 +217,15 @@ class Screen
       friend Button *Create_Button(Screen *m, float, float, std::string, float);
 
    protected:
-      bool Connect(EVENTS evt, callback *, void *argument);
-      bool Disconnet(EVENTS evt, std::string idKey);
+      bool Connect(Event evt, callback *, void *argument);
+      bool Disconnet(Event evt, std::string idKey);
 
 
    private:
       std::map<std::string, Widget *> TablaWidgets;
       std::map<std::string, Widget *>::iterator iterWidget;
-      std::map<std::string, Events *> QueueEventos;
-      std::map<std::string, Events *>::iterator ev_it;
+      std::map<std::string, EVENTS *> QueueEventos;
+      std::map<std::string, EVENTS *>::iterator iterEvento;
 
       COORD   position;    //. Pisicion en coordenadas del Screen
       STYLES  Styles;      //. Styles predeterminados de Colores
