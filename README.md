@@ -32,7 +32,7 @@ namespace scr {
 	}
 	
 	//. Eventos posibles desde los WIDGET
-	enum EVENTS {
+	enum Events {
 		on_Create,
 		on_Destroy,
 		on_Pressed,
@@ -45,11 +45,16 @@ namespace scr {
 		on_Connect,
 		on_Disconnect,
 	}
+	enum CTYPES {
+		CLabel, CButton, CButtonCheck, CButtonRadio ...
+	}
 	
-	struct Events {
-		int idKey,
-		EVENTS event[],
-		auto_ptr *callfunction;
+	typedef  void (callback) (sdt::string, EVENTS *evn);
+
+	struct EVENTS {
+		int 			idEvent,
+		callback 		*myFunction,
+		std::string 	arguments;
 	}
 	
 	struct COORD {
@@ -60,37 +65,41 @@ namespace scr {
 		float x, y, width, height;
 	}
 
+	/*  CONTENEDOR DE PANTALLAS */
+
 	class Screen {
 		private:
-			//. Tabla de Botones en la Screen
-			TABLA <key, WIDGET>[];
+			//. Tabla de Widgets en la Screen
+			// TABLA <key, WIDGET>[];
+			map<string, *Widget> TablaWidget  //. idKey, Widget_elemento  
+			map<string, *Widget> iterWidget   //. indice iterador
 			
-			//. Recibe los eventos enviados desde los WIDGETS
-			//. los procesa y luego los borra de la Queue
-			QUEUE <key, EVENTS>[];
+			//. Podria ser plantilla, en final version
+			// template<T> map<string, T> TablaWidget
+			// template<T> map<string, T> iterWidget
 			
-			COORD 	position			//. Coordenada en la pantalla (punto centro)
-			STYLES 	styles      	//. Colores Predeterminados
+			COORD 		position		//. Coordenada en la pantalla (punto centro)
+			STYLES 		styles      	//. Colores Predeterminados
 			uint 		idClass			//. Numero identificador del Screen
 			uint		idTypes			//. Frame / Dialog / Splash
-			string	idNames			//. Nombre identificador
+			string		idNames			//. Nombre identificador
 			bool 		visible			//. Si es visible (true, false)
 			bool 		enabled			//. Si esta disponible
 			bool 		focused			//. Si tiene Focus Activo
 			
-			WIDGET focusNext			//. Siguiente Screen a focalizar
-			WIDGET focusPrevio		//. Anterior Screen a focalizar
+			Screen *focusNext			//. Siguiente Screen a focalizar
+			Screen *focusPrevio			//. Anterior Screen a focalizar
 			
-			DIMENSION   dimActual;
-			DIMENSION   dimMinima;
-			DIMENSION   dimMaxima;
+			DIMENSION   dimActual
+			DIMENSION   dimMinima
+			DIMENSION   dimMaxima
 			
-			FONT         myFont;     //. Fuente predeterminada
-			float        FontScale   //. Escalar proporcional de la Fuente
-			std::string  pathConfig  //. ruta a los recursos basicos.
+			FONT        fontBase     	//. Fuente predeterminada
+			float       FontScale   	//. Escalar proporcional de la Fuente
+			string  	pathConfig  	//. ruta a los recursos basicos.
 		
 		public:
-			void Display()
+			virtual void Display(sf::RenderWindow *)
 			void Update()
 			void Resize()
 			bool is_visible()
@@ -116,50 +125,55 @@ namespace scr {
 	class Widget {
 		//. Cada widget crea una tabla de eventos, y la envia
 		//. a un puntero de una funcion en SCREEN
-		EVENT<event, callFunction, argument)
+		//. EVENT<event, callFunction, argument)
+		map<Events idEvent, EVENTS *evn> TablaEventos   //. Tabla de Eventos
+		map<Events idEvent, EVENTS *evn> iterEventos    //. index iterador
 		
 		private:
-			COORD 	position			//. Coordenada en la pantalla (punto centro)
-			STYLES 	styles      	//. Colores Predeterminados
+			COORD 		position		//. Coordenada en la pantalla (punto centro)
+			STYLES 		styles      	//. Colores Predeterminados
 			uint 		idClass			//. Numero identificador del Widget
 			uint		idTypes			//. (1=Label, 2=Button, 3=ButtonTexture ...)
-			string	idNames			//. Nombre identificador
+			string		keyName			//. Nombre identificador en la TablaWidgets
 			bool 		visible			//. Si es visible (true, false)
 			bool 		enabled			//. Si esta disponible
 			bool 		focused			//. Si tiene Focus Activo
-			WIDGET focusNext			//. Siguiente Screen a focalizar
-			WIDGET focusPrevio		//. Anterior Screen a focalizar	
+			WIDGET 		*focusNext		//. Siguiente Screen a focalizar
+			WIDGET 		*focusPrevio	//. Anterior Screen a focalizar	
 
-			DIMENSION  dimActual     //. Dimensiones
+			DIMENSION  dimActual     	
 			DIMENSION  dimMinima
 			DIMENSION  dimMaxima
 			
-			DIMENSION  factorMargen  //. factor de margen  Centrado = (0.5, 0.5, 0.5, 0.5)
+			DIMENSION  factorMargen  	//. factor de margen  Centrado = (0.5, 0.5, 0.5, 0.5)
 		
 		//. Funciones a ser heredadas por cada Widget de la lista de abajo.
 		protected:
 			void setStyle( STYLES m);
 			STYLES getStyle();
 			
-			void  setPosition( COORD m) 	//. Fijar Posicion
+			void  setPosition(COORD m)	//. Fijar Posicion
 			COORD getPosition()
 			
 			void setName(std::string)
 			std::string getName()
 			
-			void setVisible(state)   		//. state = {true, false}
+			void setVisible(state)   	//. state = {true, false}
 			bool is_visible()
 			
-			void setEnabled(state)        //. Si esta disponible
+			void setEnabled(state)		//. Si esta disponible
 			bool is_enabled()
+
+			void setToogled(state)		//. Si es Boton de Toque (on | off)
+			bool is_Toogled()
 			
-			void setFocus(state)				//. Si esta focalizado
+			void setFocus(state)		//. Si esta focalizado
 			bool is_focused()
 			
-			void setFocusNext(WIDGET m)
-			void setFocusPrevio(WIDGET m)
+			void setFocusNext(WIDGET *m)
+			void setFocusPrevio(WIDGET *m)
 			
-			void setDimension(float width, height)					//. Dimension Actual (Ancho, alto)
+			void setDimension(float width, height)				//. Dimension Actual (Ancho, alto)
 			void setDimensionMin(float width, float height)		//. Dimesion Minima
 			void setDimensionMax(float width, float height)		//. Dimesion Maxima
 			
@@ -172,7 +186,7 @@ namespace scr {
 			
 			std::string toString()			//. Retorna un String texto con los parametros configurados
 		
-			virtual Display()
+			virtual Display(sf::RenderWindow *m)
 			virtual Update()
 			virtual Resize()
 		
