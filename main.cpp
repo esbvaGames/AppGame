@@ -8,7 +8,10 @@
 #include "Widget.hpp"
 #include "Label.hpp"
 #include "Button.hpp"
+#include "ButtonRadio.hpp"
 
+
+#define MAIN
 ///////////////////////////////////////////////////
 
 Label    *myLabel  = NULL;
@@ -79,17 +82,25 @@ int main()
     Label *lbName = Create_Label(myScreen, 40,80, "Texto de Etiqueta", 16.0f);
     myScreen->Widget_add("subtext", lbName);
 
+
     Button *myButton = Create_Button(myScreen, 40,120, "boton", 16.0f);
     myButton->Connect(Event::on_Pressed, (callback*)&myFuncion, "8489:yryy:59069");
     myButton->Connect(Event::on_MouseEntered, (callback*)&myMouseEntered, "arg1,arg2,arg3");
     myButton->Connect(Event::on_MouseExited, (callback*)&myMouseExited, "111,222,333,444");
-
-
-
-
     myScreen->Widget_add("btnData", myButton);
 
 
+    ButtonRadio *myOption1 = Create_Option(myScreen, 40, 160 +(30*0), "Color-Normal", 16.0f, "grpColor");
+    myScreen->Widget_add("btnOptn-1", (Button*)myOption1);
+
+    ButtonRadio *myOption2 = Create_Option(myScreen, 40, 160 +(30*1), "Color-Dark", 16.0f, "grpColor");
+    myScreen->Widget_add("btnOptn-2", (Button*)myOption2);
+
+    ButtonRadio *myOption3 = Create_Option(myScreen, 40, 160 +(30*2), "Color-Light", 16.0f, "grpColor");
+    myScreen->Widget_add("btnOptn-3", (Button*)myOption3);
+
+    ButtonRadio *myOption4 = Create_Option(myScreen, 40, 160 +(30*3), "Color-Neon", 16.0f, "grpColor");
+    myScreen->Widget_add("btnOptn-4", (Button*)myOption4);
 // TODO (esbva#1#): Modos Pendientes
    /*
    myButton->setVisible( true | false )
@@ -101,13 +112,7 @@ int main()
 
 
     //. Pruebas locales antes de encapsular
-    /*
-    if(!myFont.loadFromFile("./assets/acme.ttf")){
-      std::cout << "Error Leyendo: acme.ttf" << std::endl;
-    }
-    prompt = sf::Text("SFML GUI Interface", myFont, 40);
-    prompt.setPosition(40, 40);
-    */
+
 
     if(win.isOpen()){
       while(running){
@@ -121,18 +126,14 @@ int main()
             //myButton->MouseInRect(&win);
             myScreen->Update(&win);
          }
+
          win.clear(sf::Color(0,0,0));
 
-         //TestDisplay_01(&win);
-         //myButton->Display(&win);
-
-         //Display en el Contenedor-Screen
          myScreen->Display(&win);
-
          win.display();
       }
-      delete myButton;
-      myButton = NULL;
+      //delete myButton;
+      //myButton = NULL;
 
       delete myScreen;
       myScreen = NULL;

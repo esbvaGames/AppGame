@@ -52,6 +52,13 @@ void Button::MouseInRect(sf::RenderWindow *win)
       if(sf::Mouse::isButtonPressed( sf::Mouse::Left )){
          std::cout << "Pressed Left"   << std::endl;
          State = STATES::Pressed;
+         if(idTypes == CTYPES::CButtonRadio){
+            Selecto = ((Selecto == true) ? false : true);
+
+            //. FUNCTION FRIEND GENERAL.
+            Option_Update(this->KeyName, this->idGroup );
+         }
+         LOG_WARN(Selecto);
       //. Llama la funcion apuntada en (on_Pressed)
          on_CallFunction(Event::on_Pressed);
 
@@ -110,6 +117,26 @@ void Button::Display(sf::RenderWindow *win)
    win->draw(rcShape);
    win->draw(prompt);
 
+}
+
+void Button::setGroup(std::string idGroup)
+{
+   this->idGroup = idGroup;
+}
+
+std::string Button::getGroup()
+{
+   return idGroup;
+}
+
+void Button::setSelect(bool state)
+{
+   this->Selecto = state;
+}
+
+bool Button::is_Select()
+{
+   return this->Selecto;
 }
 
 

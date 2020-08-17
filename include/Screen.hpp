@@ -148,6 +148,7 @@ enum STATES {
 class Widget;
 class Label;
 class Button;
+class ButtonRadio;
 
 //. El objeto que envia se ubica por el idKey de la tabla
 struct EVENTS;
@@ -164,6 +165,7 @@ struct EVENTS {
       this->arguments = arguments;
    }
 };
+
 
 
 
@@ -212,9 +214,13 @@ class Screen
       bool Widget_update(std::string idKey, Widget *widget);
       bool Widget_remove(std::string idKey);
 
+      void Widget_Option(std::string idKey, std::string idGroup);
+
       //... FUNCIONES DE CREACION DE WIDGETS ...
       friend Label  *Create_Label(Screen *m, float, float, std::string, float);
       friend Button *Create_Button(Screen *m, float, float, std::string, float);
+      friend ButtonRadio *Create_Option(Screen *m, float, float, std::string, float, std::string);
+      friend void Option_Update(std::string idKey, std::string idGroup);
 
    protected:
       bool Connect(Event evt, callback *, void *argument);
@@ -250,5 +256,8 @@ class Screen
       float        fontScale;    //. Escalar Proporcional a la Fuente Activa
       std::string  pathAssets;   //. Ruta a los Assetes Predeterminados
 };
+
+/*  FUNCIONES FRIEND */
+void Option_Update(std::string, std::string);
 
 #endif // SCREEN_HPP

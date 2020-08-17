@@ -45,6 +45,7 @@ class Widget
 
    protected:
       STYLES         styles;
+      std::string    Options;       //. Grupo de Boton Opciones
 
       sf::Text       prompt;        //. Nombre para Mostrar si es requerido
       sf::Font       fontBase;
