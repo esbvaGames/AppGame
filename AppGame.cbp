@@ -15,7 +15,6 @@
 				<Compiler>
 					<Add option="-std=gnu++14" />
 					<Add option="-g" />
-					<Add option="-Wdeprecated-declarations" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -46,12 +45,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/Button.hpp" />
+		<Unit filename="include/ButtonCheck.hpp" />
 		<Unit filename="include/ButtonRadio.hpp" />
 		<Unit filename="include/Label.hpp" />
 		<Unit filename="include/Screen.hpp" />
 		<Unit filename="include/Widget.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Button.cpp" />
+		<Unit filename="src/ButtonCheck.cpp" />
 		<Unit filename="src/ButtonRadio.cpp" />
 		<Unit filename="src/Label.cpp" />
 		<Unit filename="src/Screen.cpp" />

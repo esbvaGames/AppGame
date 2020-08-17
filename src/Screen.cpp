@@ -4,7 +4,7 @@
 #include "Label.hpp"
 #include "Button.hpp"
 #include "ButtonRadio.hpp"
-
+#include "ButtonCheck.hpp"
 
 
 
@@ -38,8 +38,13 @@ void Screen::Update(sf::RenderWindow* win)
       case CTYPES::CButton:
          ((Button *)data)->MouseInRect(win);
          break;
+
       case CTYPES::CButtonRadio:
          ((ButtonRadio*)(Button*)data)->MouseInRect(win);
+         break;
+
+      case CTYPES::CButtonCheck:
+         ((ButtonCheck*)(Button*)data)->MouseInRect(win);
          break;
 
       default:
@@ -62,12 +67,17 @@ void Screen::Display(sf::RenderWindow *win){
       case CTYPES::CLabel:
          ((Label*)data)->Display(win);
          break;
+
       case CTYPES::CButton:
          ((Button*)data)->Display(win);
          break;
 
       case CTYPES::CButtonRadio:
          ((ButtonRadio*)(Button*)data)->Display(win);
+         break;
+
+      case CTYPES::CButtonCheck:
+         ((ButtonCheck*)(Button*)data)->Display(win);
          break;
 
       default:
@@ -151,6 +161,11 @@ ButtonRadio *Create_Option(Screen *scr, float cx, float cy, std::string texto, f
    ButtonRadio *option = new ButtonRadio(cx, cy, 80, 25, texto, scr->fontBase, Scale);
    option->setGroup(idGrupo);
    return option;
+}
+
+ButtonCheck *Create_Check(Screen *scr, float cx, float cy, std::string texto, float Scale){
+   ButtonCheck *casilla = new ButtonCheck(cx, cy,100, 25, texto, scr->fontBase, Scale);
+   return casilla;
 }
 
 /* PANTALLA GENERAL DE PRUEBA */

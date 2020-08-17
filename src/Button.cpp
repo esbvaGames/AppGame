@@ -26,13 +26,15 @@ Button::Button(float cx, float cy, float width, float height, \
    this->Scale = Scale;
    this->myFont = myFont;
    prompt = sf::Text(texto, this->myFont, this->Scale);
-   prompt.setColor(styles.ColorNormal);
+   prompt.setFillColor(styles.ColorNormal);
 
-   float px = (prompt.getLocalBounds().width)  - (width * 0.5);
-   float py = (prompt.getLocalBounds().height) - (height* 0.5);
+   float px = (float) (width - (prompt.getLocalBounds().width)) / 2.0f;
+   float py = (float) (height - (prompt.getLocalBounds().height)) / 2.0f -4.0;
 
    prompt.setPosition(cx + px , cy + py);
    set_idType(CTYPES::CButton);
+   Toogled = false;
+   Selecto = false;
 }
 
 void Button::MouseInRect(sf::RenderWindow *win)
@@ -41,7 +43,14 @@ void Button::MouseInRect(sf::RenderWindow *win)
    float py = sf::Mouse::getPosition(*win).y;
 
    if(rcForma.contains( sf::Vector2<float>(px, py) )){
-      State = STATES::Select;
+      if(Toogled){
+         if(!Selecto){
+            State = STATES::Select;
+         }
+      } else {
+         State = STATES::Select;
+      }
+
       if(!MouseEnter){
          MouseEnter = true;
          on_CallFunction(Event::on_MouseEntered);
@@ -52,13 +61,27 @@ void Button::MouseInRect(sf::RenderWindow *win)
       if(sf::Mouse::isButtonPressed( sf::Mouse::Left )){
          std::cout << "Pressed Left"   << std::endl;
          State = STATES::Pressed;
+         if(idTypes == CTYPES::CButton){
+            if(Toogled){
+               Selecto = ((Selecto == true) ? false : true);
+               if(Selecto){
+                  State = STATES::Pressed;
+               } else {
+                  State = STATES::Normal;
+               }
+            }
+         }
          if(idTypes == CTYPES::CButtonRadio){
             Selecto = ((Selecto == true) ? false : true);
-
             //. FUNCTION FRIEND GENERAL.
             Option_Update(this->KeyName, this->idGroup );
+            LOG_WARN("Button Options: " << Selecto);
          }
-         LOG_WARN(Selecto);
+         if(idTypes == CTYPES::CButtonCheck){
+            Selecto = ((Selecto == true) ? false : true);
+            LOG_WARN("Button Checked: " << Selecto);
+         }
+
       //. Llama la funcion apuntada en (on_Pressed)
          on_CallFunction(Event::on_Pressed);
 
@@ -81,7 +104,16 @@ void Button::MouseInRect(sf::RenderWindow *win)
          //LOG_WARN("Mouse Exited");
 
       }
-      State = STATES::Normal;
+      if(Toogled){
+         if(Selecto){
+            State = STATES::Pressed;
+         } else {
+            State = STATES::Normal;
+         }
+
+      } else {
+         State = STATES::Normal;
+      }
    }
    //std::cout << "(" << px <<","<< py <<")" << std::endl;
 }
@@ -90,25 +122,25 @@ void Button::Display(sf::RenderWindow *win)
 {
    switch(State){
    case STATES::Select:
-      prompt.setColor(styles.ColorSelect);
+      prompt.setFillColor(styles.ColorSelect);
       rcShape.setOutlineColor(styles.ColorSelect);
       rcShape.setFillColor(styles.ColorSelect_alpha);
       break;
 
    case STATES::Pressed:
-      prompt.setColor(styles.ColorActive);
+      prompt.setFillColor(styles.ColorActive);
       rcShape.setOutlineColor(styles.ColorActive);
       rcShape.setFillColor(styles.ColorActive_alpha);
       break;
 
    case STATES::Disable:
-      prompt.setColor(styles.ColorDisabled);
-      rcShape.setOutlineColor(styles.ColorDisabled);
+      prompt.setFillColor(styles.ColorDisable);
+      rcShape.setOutlineColor(styles.ColorDisable);
       rcShape.setFillColor(styles.ColorDisable_alpha);
       break;
 
    default:
-      prompt.setColor(styles.ColorNormal);
+      prompt.setFillColor(styles.ColorNormal);
       rcShape.setOutlineColor(styles.ColorNormal);
       rcShape.setFillColor(styles.ColorNormal_alpha);
       break;

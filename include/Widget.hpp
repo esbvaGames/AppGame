@@ -59,7 +59,7 @@ class Widget
       bool           visible;
       bool           enabled;
       bool           focused;
-      bool           toogled;      //. Boton de Toques (on | off)
+      //bool           toogled;      //. Boton de Toques (on | off)
 
       DIMENSION      dimActual;
       DIMENSION      dimMinima;

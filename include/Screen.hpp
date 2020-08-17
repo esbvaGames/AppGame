@@ -87,7 +87,7 @@ struct STYLES {
    sf::Color ColorNormal;
    sf::Color ColorSelect;
    sf::Color ColorActive;
-   sf::Color ColorDisabled;
+   sf::Color ColorDisable;
    sf::Color ColorMargen;
    sf::Color ColorBordes;
    sf::Color ColorFrames;
@@ -104,7 +104,7 @@ struct STYLES {
       ColorNormal = sf::Color(74, 134, 232);
       ColorSelect = sf::Color(0,255,0);
       ColorActive = sf::Color(0,255,255);
-      ColorDisabled = sf::Color(116, 116, 116);
+      ColorDisable = sf::Color(116, 116, 116);
       ColorMargen  = sf::Color(255, 0,0);
       ColorBordes  = sf::Color(0,0,255);
       ColorFrames  = sf::Color(0,150,136);
@@ -148,6 +148,7 @@ enum STATES {
 class Widget;
 class Label;
 class Button;
+class ButtonCheck;
 class ButtonRadio;
 
 //. El objeto que envia se ubica por el idKey de la tabla
@@ -221,6 +222,7 @@ class Screen
       friend Button *Create_Button(Screen *m, float, float, std::string, float);
       friend ButtonRadio *Create_Option(Screen *m, float, float, std::string, float, std::string);
       friend void Option_Update(std::string idKey, std::string idGroup);
+      friend ButtonCheck *Create_Check(Screen *m, float, float, std::string, float);
 
    protected:
       bool Connect(Event evt, callback *, void *argument);

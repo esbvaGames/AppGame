@@ -83,11 +83,15 @@ int main()
     myScreen->Widget_add("subtext", lbName);
 
 
-    Button *myButton = Create_Button(myScreen, 40,120, "boton", 16.0f);
+    Button *myButton = Create_Button(myScreen, 40,120, "Boton", 16.0f);
     myButton->Connect(Event::on_Pressed, (callback*)&myFuncion, "8489:yryy:59069");
     myButton->Connect(Event::on_MouseEntered, (callback*)&myMouseEntered, "arg1,arg2,arg3");
     myButton->Connect(Event::on_MouseExited, (callback*)&myMouseExited, "111,222,333,444");
     myScreen->Widget_add("btnData", myButton);
+
+    Button *myToogle = Create_Button(myScreen, 130, 120, "Toque", 16.0f);
+    myToogle->setToggled(true);
+    myScreen->Widget_add("btnToogle", myToogle);
 
 
     ButtonRadio *myOption1 = Create_Option(myScreen, 40, 160 +(30*0), "Color-Normal", 16.0f, "grpColor");
@@ -101,6 +105,21 @@ int main()
 
     ButtonRadio *myOption4 = Create_Option(myScreen, 40, 160 +(30*3), "Color-Neon", 16.0f, "grpColor");
     myScreen->Widget_add("btnOptn-4", (Button*)myOption4);
+
+
+    ButtonCheck *myCasilla1 = Create_Check(myScreen, 40, 160 + (30*4), "Casilla-1", 16.0f);
+    myScreen->Widget_add("Casilla-1", (Button*)myCasilla1);
+
+    ButtonCheck *myCasilla2 = Create_Check(myScreen, 40, 160 + (30*5), "Casilla-2", 16.0f);
+    myScreen->Widget_add("Casilla-2", (Button*)myCasilla2);
+
+    ButtonCheck *myCasilla3 = Create_Check(myScreen, 40, 160 + (30*6), "Casilla-3", 16.0f);
+    myScreen->Widget_add("Casilla-3", (Button*)myCasilla3);
+
+    ButtonCheck *myCasilla4 = Create_Check(myScreen, 40, 160 + (30*7), "Casilla-4", 16.0f);
+    myScreen->Widget_add("Casilla-4", (Button*)myCasilla4);
+
+
 // TODO (esbva#1#): Modos Pendientes
    /*
    myButton->setVisible( true | false )

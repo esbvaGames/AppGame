@@ -44,7 +44,7 @@ void ButtonRadio::Display(sf::RenderWindow* win)
 {
    switch(State){
    case STATES::Select:
-      prompt.setColor(styles.ColorSelect);
+      prompt.setFillColor(styles.ColorSelect);
       circle.setFillColor(styles.ColorSelect_alpha);
       circle.setOutlineColor(styles.ColorSelect);
       centro.setFillColor(styles.ColorSelect_alpha);
@@ -52,7 +52,7 @@ void ButtonRadio::Display(sf::RenderWindow* win)
       break;
 
    case STATES::Pressed:
-      prompt.setColor(styles.ColorActive);
+      prompt.setFillColor(styles.ColorActive);
       circle.setFillColor(styles.ColorActive_alpha);
       circle.setOutlineColor(styles.ColorActive);
       centro.setFillColor(styles.ColorActive_alpha);
@@ -60,22 +60,22 @@ void ButtonRadio::Display(sf::RenderWindow* win)
       break;
 
    case STATES::Disable:
-      prompt.setColor(styles.ColorDisabled);
+      prompt.setFillColor(styles.ColorDisable);
       circle.setFillColor(styles.ColorDisable_alpha);
-      circle.setOutlineColor(styles.ColorDisabled);
+      circle.setOutlineColor(styles.ColorDisable);
       centro.setFillColor(styles.ColorDisable_alpha);
-      centro.setOutlineColor(styles.ColorDisabled);
+      centro.setOutlineColor(styles.ColorDisable);
       break;
 
    default:
       if(Selecto){
-         prompt.setColor(styles.ColorActive);
+         prompt.setFillColor(styles.ColorActive);
          circle.setFillColor(styles.ColorActive_alpha);
          circle.setOutlineColor(styles.ColorActive);
          centro.setFillColor(styles.ColorActive_alpha);
          centro.setOutlineColor(styles.ColorActive);
       } else {
-         prompt.setColor(styles.ColorNormal);
+         prompt.setFillColor(styles.ColorNormal);
          circle.setFillColor(styles.ColorNormal_alpha);
          circle.setOutlineColor(styles.ColorNormal);
          centro.setFillColor(styles.ColorNormal_alpha);
@@ -88,8 +88,6 @@ void ButtonRadio::Display(sf::RenderWindow* win)
    if(Selecto){
       win->draw(centro);
    }
-
-   //win->draw(rcShape);
    win->draw(prompt);
 
 }

@@ -22,11 +22,15 @@ class Button : public Widget
       void setGroup(std::string idGroup);
       std::string getGroup();
 
+      void setToggled(bool state){ this->Toogled = state; };
+      bool is_Toggled() { return this->Toogled; }
+
       std::string toString();
 
    protected:
       std::string         idGroup;
       bool                Selecto;
+      bool                Toogled;
       bool                MouseEnter;
 
       sf::Font            myFont;
