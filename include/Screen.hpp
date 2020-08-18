@@ -207,9 +207,9 @@ class Screen
       void setEnabled(bool state);
       bool is_Enabled();
 
-      void setFontBase(sf::Font font, float Scalar);
+      void setFontBase(std::string fontFile, float Scale);
       sf::Font getFontBase();
-
+      float getFontScale();
 
       bool Widget_add(std::string idKey, Widget *widget);
       bool Widget_update(std::string idKey, Widget *widget);
@@ -225,6 +225,9 @@ class Screen
       friend ButtonCheck *Create_Check(Screen *m, float, float, std::string, float);
 
    protected:
+      sf::Font     fontBase;     //. Fuente predeterminada
+      float        fontScale;    //. Escalar Proporcional a la Fuente Activa
+
       bool Connect(Event evt, callback *, void *argument);
       bool Disconnet(Event evt, std::string idKey);
 
@@ -253,9 +256,7 @@ class Screen
       DIMENSION dimMaxima;       //. Dimensiones del Screen Maximo
       DIMENSION factorMargen;    //. Porcentaje margen: centro(0.5, 0.5, 0.5, 0.5)
 
-      sf::Font     fontBase;     //. Fuente predeterminada
       std::string  fontFile;     //. Archivo fuente-Predeterminada
-      float        fontScale;    //. Escalar Proporcional a la Fuente Activa
       std::string  pathAssets;   //. Ruta a los Assetes Predeterminados
 };
 

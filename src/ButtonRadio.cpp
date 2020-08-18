@@ -12,9 +12,8 @@ ButtonRadio::~ButtonRadio()
 {
    //dtor
 }
-ButtonRadio::ButtonRadio(float cx, float cy, float width, float height, \
-                         std::string texto, sf::Font myFont, float Scale) : \
-                         Button(cx, cy, width, height, texto, myFont, Scale)
+ButtonRadio::ButtonRadio(Screen *scr, float cx, float cy, float width, float height, \
+                         std::string texto, float Scale) : Button(scr, cx, cy, width, height, texto, Scale)
 {
     prompt.setPosition(sf::Vector2f(cx +25, cy));
     rcShape.setPosition(cx -4, cy -2);

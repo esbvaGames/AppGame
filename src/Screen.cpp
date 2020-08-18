@@ -30,6 +30,26 @@ Screen::~Screen()
 
 }
 
+
+void Screen::setFontBase(std::string fontFile, float Scalar)
+{
+   this->fontScale = Scalar;
+   if(!fontBase.loadFromFile(fontFile)){
+      LOG_ERRN("falls leyendo: " << fontFile);
+   }
+}
+
+sf::Font Screen::getFontBase()
+{
+   return fontBase;
+}
+float Screen::getFontScale()
+{
+   return fontScale;
+}
+
+
+
 void Screen::Update(sf::RenderWindow* win)
 {
    for(iterWidget = TablaWidgets.begin(); iterWidget != TablaWidgets.end(); ++iterWidget){
@@ -141,30 +161,27 @@ void Screen::Widget_Option(std::string idKey, std::string idGroup)
    }
 }
 
-
-
-
 //... FUNCIONES DE CREACION DE WIDGETS ...
 
 Label *Create_Label(Screen *scr, float cx, float cy, std::string Texto, float Scale = 10.0f){
-   Label *label = new Label(cx, cy, Texto, scr->fontBase, Scale);
+   Label *label = new Label(scr, cx, cy, Texto, Scale);
    return label;
 }
 
 Button *Create_Button(Screen *scr, float cx, float cy, std::string texto, float Scale){
-   Button *button = new Button(cx, cy, 70.0, 25.0, texto, scr->fontBase, Scale);
+   Button *button = new Button(scr, cx, cy, 70.0, 25.0, texto, Scale);
    return button;
 }
 
 ButtonRadio *Create_Option(Screen *scr, float cx, float cy, std::string texto, float Scale, \
                            std::string idGrupo){
-   ButtonRadio *option = new ButtonRadio(cx, cy, 80, 25, texto, scr->fontBase, Scale);
+   ButtonRadio *option = new ButtonRadio(scr, cx, cy, 80, 25, texto, Scale);
    option->setGroup(idGrupo);
    return option;
 }
 
 ButtonCheck *Create_Check(Screen *scr, float cx, float cy, std::string texto, float Scale){
-   ButtonCheck *casilla = new ButtonCheck(cx, cy,100, 25, texto, scr->fontBase, Scale);
+   ButtonCheck *casilla = new ButtonCheck(scr, cx, cy, 100, 25, texto, Scale);
    return casilla;
 }
 
@@ -173,10 +190,10 @@ ButtonCheck *Create_Check(Screen *scr, float cx, float cy, std::string texto, fl
    extern Screen *myScreen;
 #endif
 
+/*
 void Option_Update(std::string idKey, std::string idGroup){
    myScreen->Widget_Option(idKey, idGroup);
 }
-/*
 Button       *Screen::Create_Button( ... )
 ButtonRadio  *Screen::Create_ButtonRadio ( ... )
 ButtonCheck  *Screen::Create_ButtonCheck ( ... )

@@ -11,7 +11,7 @@ class ButtonCheck : public Button
       ButtonCheck();
       virtual ~ButtonCheck();
 
-      ButtonCheck(float, float, float, float, std::string, sf::Font, float);
+      ButtonCheck(Screen *, float, float, float, float, std::string, float);
       void Display(sf::RenderWindow *win);
 
    protected:

@@ -12,10 +12,10 @@ Label::~Label()
 }
 
 
-Label::Label(float cx, float cy, std::string texto, sf::Font fontBase, float Scale)
+Label::Label(Screen *scr, float cx, float cy, std::string texto, float Scale) : Widget(scr)
 {
-   this->fontBase = fontBase;
    this->fontScale = Scale;
+   this->fontBase  = scr->getFontBase();
 
    prompt = sf::Text(texto, this->fontBase, this->fontScale);
    prompt.setPosition(cx, cy);

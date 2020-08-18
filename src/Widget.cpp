@@ -5,10 +5,19 @@
 Widget::Widget()
 {
    //ctor
+   screen = NULL;
    FocusNext = NULL;
    FocusPrevio = NULL;
-
    newFont(std::string("./assets/acme.ttf"));
+}
+
+Widget::Widget(Screen *scr)
+{
+   FocusNext = NULL;
+   FocusPrevio = NULL;
+   newFont(std::string("./assets/acme.ttf"));
+
+   this->screen = scr;
 }
 
 Widget::~Widget()

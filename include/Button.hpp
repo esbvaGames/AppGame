@@ -11,7 +11,7 @@ class Button : public Widget
       Button();
       virtual ~Button();
 
-      Button(float, float, float, float, std::string, sf::Font, float Scale=16.0f);
+      Button(Screen *scr, float, float, float, float, std::string, float Scale=16.0f);
       virtual void Display(sf::RenderWindow *win);
 
       void MouseInRect(sf::RenderWindow *win);

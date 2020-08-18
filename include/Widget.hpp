@@ -7,6 +7,7 @@ class Widget
 {
    public:
       Widget();
+      Widget(Screen *scr);
       virtual ~Widget();
 
       virtual void Display(sf::RenderWindow *win) = 0;
@@ -44,6 +45,7 @@ class Widget
       void on_CallFunction(Event idEvent);
 
    protected:
+      Screen        *screen;        //. Screen parent.
       STYLES         styles;
       std::string    Options;       //. Grupo de Boton Opciones
 
@@ -76,7 +78,6 @@ class Widget
 
       std::string    pathAssets;    //. Recursos de la GUI.
       std::string    fileToSave;      //. Archivo
-
 
 };
 

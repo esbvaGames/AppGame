@@ -9,7 +9,7 @@ class ButtonRadio : public Button
    public:
       ButtonRadio();
       virtual ~ButtonRadio();
-      ButtonRadio(float, float, float, float, std::string, sf::Font, float Scale);
+      ButtonRadio(Screen *scr, float, float, float, float, std::string, float Scale);
 
       void Display(sf::RenderWindow *win);
 

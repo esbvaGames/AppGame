@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1597686662 source:c:\documents\codeblocks\appgame\main.cpp
+1597784675 source:c:\documents\codeblocks\appgame\main.cpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -9,7 +9,7 @@
 	"Button.hpp"
 	"ButtonRadio.hpp"
 
-1597684520 source:c:\documents\codeblocks\appgame\src\screen.cpp
+1597787947 source:c:\documents\codeblocks\appgame\src\screen.cpp
 	"Screen.hpp"
 	"Widget.hpp"
 	"Label.hpp"
@@ -17,7 +17,7 @@
 	"ButtonRadio.hpp"
 	"ButtonCheck.hpp"
 
-1597683615 c:\documents\codeblocks\appgame\include\screen.hpp
+1597785962 c:\documents\codeblocks\appgame\include\screen.hpp
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	<cassert>
@@ -25,37 +25,37 @@
 	<sstream>
 	<map>
 
-1597447706 source:c:\documents\codeblocks\appgame\src\label.cpp
+1597786016 source:c:\documents\codeblocks\appgame\src\label.cpp
 	<label.hpp>
 
-1597447706 c:\documents\codeblocks\appgame\include\label.hpp
+1597784665 c:\documents\codeblocks\appgame\include\label.hpp
 	<Screen.hpp>
 	<Widget.hpp>
 
-1597685534 c:\documents\codeblocks\appgame\include\widget.hpp
+1597784665 c:\documents\codeblocks\appgame\include\widget.hpp
 	<Screen.hpp>
 
-1597525230 source:c:\documents\codeblocks\appgame\src\widget.cpp
+1597784665 source:c:\documents\codeblocks\appgame\src\widget.cpp
 	<widget.hpp>
 
-1597686645 source:c:\documents\codeblocks\appgame\src\button.cpp
+1597786323 source:c:\documents\codeblocks\appgame\src\button.cpp
 	"Button.hpp"
 
-1597685546 c:\documents\codeblocks\appgame\include\button.hpp
+1597786323 c:\documents\codeblocks\appgame\include\button.hpp
 	<Screen.hpp>
 	<Widget.hpp>
 
-1597686488 source:c:\documents\codeblocks\appgame\src\buttonradio.cpp
+1597786515 source:c:\documents\codeblocks\appgame\src\buttonradio.cpp
 	"ButtonRadio.hpp"
 
-1597621581 c:\documents\codeblocks\appgame\include\buttonradio.hpp
+1597786515 c:\documents\codeblocks\appgame\include\buttonradio.hpp
 	<Screen.hpp>
 	<Button.hpp>
 
-1597682294 c:\documents\codeblocks\appgame\include\buttoncheck.hpp
+1597786440 c:\documents\codeblocks\appgame\include\buttoncheck.hpp
 	<Screen.hpp>
 	<Button.hpp>
 
-1597684520 source:c:\documents\codeblocks\appgame\src\buttoncheck.cpp
+1597786440 source:c:\documents\codeblocks\appgame\src\buttoncheck.cpp
 	"ButtonCheck.hpp"
 

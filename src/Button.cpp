@@ -12,9 +12,10 @@ Button::~Button()
 {
    //dtor
 }
-Button::Button(float cx, float cy, float width, float height, \
-               std::string texto, sf::Font myFont, float Scale)
+Button::Button(Screen *scr, float cx, float cy, float width, float height, \
+               std::string texto, float Scale) : Widget(scr)
 {
+
    rcShape.setSize(sf::Vector2f(width, height));
    rcShape.setFillColor(styles.ColorNormal_alpha);
    rcShape.setOutlineColor(styles.ColorNormal);
@@ -24,7 +25,7 @@ Button::Button(float cx, float cy, float width, float height, \
    rcForma = sf::Rect<float>(cx, cy, width, height);
 
    this->Scale = Scale;
-   this->myFont = myFont;
+   this->myFont = scr->getFontBase();
    prompt = sf::Text(texto, this->myFont, this->Scale);
    prompt.setFillColor(styles.ColorNormal);
 
@@ -74,7 +75,7 @@ void Button::MouseInRect(sf::RenderWindow *win)
          if(idTypes == CTYPES::CButtonRadio){
             Selecto = ((Selecto == true) ? false : true);
             //. FUNCTION FRIEND GENERAL.
-            Option_Update(this->KeyName, this->idGroup );
+            screen->Widget_Option(this->KeyName, this->idGroup );
             LOG_WARN("Button Options: " << Selecto);
          }
          if(idTypes == CTYPES::CButtonCheck){
