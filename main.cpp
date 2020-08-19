@@ -4,11 +4,13 @@
 
 #include <iostream>
 
-#include "Screen.hpp"
-#include "Widget.hpp"
-#include "Label.hpp"
-#include "Button.hpp"
-#include "ButtonRadio.hpp"
+#include <Screen.hpp>
+#include <Widget.hpp>
+#include <Label.hpp>
+#include <Button.hpp>
+#include <ButtonRadio.hpp>
+#include <ButtonCheck.hpp>
+#include <Rectangle.hpp>
 
 
 #define MAIN
@@ -119,6 +121,12 @@ int main()
     ButtonCheck *myCasilla4 = Create_Check(myScreen, 40, 160 + (30*7), "Casilla-4", 16.0f);
     myScreen->Widget_add("Casilla-4", (Button*)myCasilla4);
 
+
+    Rectangle *rectangle = Create_Rectangle(myScreen, 250, 20, 100,100);
+    myScreen->Widget_add("rectangle-1", rectangle);
+
+    Rectangle *rectImage = Create_RectImage(myScreen, 380, 20, 100,100, "moon_03.png");
+    myScreen->Widget_add("rectangle-2", rectImage);
 
 // TODO (esbva#1#): Modos Pendientes
    /*

@@ -39,6 +39,9 @@ class Widget
       std::string getKeyName();
       void setKeyName(std::string keyName);
 
+      std::string get_pathAssets();
+      void set_pathAssets(std::string);
+
       bool Connect(Event idEvent, callback *command, std::string argument);
       bool Disconnect(Event idEvent);
 

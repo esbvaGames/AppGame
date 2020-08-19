@@ -1,11 +1,11 @@
 
-#include "Screen.hpp"
-#include "Widget.hpp"
-#include "Label.hpp"
-#include "Button.hpp"
-#include "ButtonRadio.hpp"
-#include "ButtonCheck.hpp"
-
+#include <Screen.hpp>
+#include <Widget.hpp>
+#include <Label.hpp>
+#include <Button.hpp>
+#include <ButtonRadio.hpp>
+#include <ButtonCheck.hpp>
+#include <Rectangle.hpp>
 
 
 Screen::Screen()
@@ -100,6 +100,10 @@ void Screen::Display(sf::RenderWindow *win){
          ((ButtonCheck*)(Button*)data)->Display(win);
          break;
 
+      case CTYPES::CRectangle:
+         ((Rectangle*)data)->Display(win);
+         break;
+
       default:
          break;
       }
@@ -183,6 +187,16 @@ ButtonRadio *Create_Option(Screen *scr, float cx, float cy, std::string texto, f
 ButtonCheck *Create_Check(Screen *scr, float cx, float cy, std::string texto, float Scale){
    ButtonCheck *casilla = new ButtonCheck(scr, cx, cy, 100, 25, texto, Scale);
    return casilla;
+}
+
+Rectangle *Create_Rectangle(Screen *scr, float cx, float cy, float width, float height){
+   Rectangle *rectg = new Rectangle(scr, cx, cy, width, height);
+   return rectg;
+}
+
+Rectangle *Create_RectImage(Screen *scr, float cx, float cy, float width, float height, std::string fileName){
+   Rectangle *rectg = new Rectangle(scr, cx, cy, width, height, fileName);
+   return rectg;
 }
 
 /* PANTALLA GENERAL DE PRUEBA */

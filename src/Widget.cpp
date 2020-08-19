@@ -1,6 +1,5 @@
 
-#include <widget.hpp>
-
+#include <Widget.hpp>
 
 Widget::Widget()
 {
@@ -8,6 +7,7 @@ Widget::Widget()
    screen = NULL;
    FocusNext = NULL;
    FocusPrevio = NULL;
+   pathAssets = "./assets";
    newFont(std::string("./assets/acme.ttf"));
 }
 
@@ -15,6 +15,7 @@ Widget::Widget(Screen *scr)
 {
    FocusNext = NULL;
    FocusPrevio = NULL;
+   pathAssets = "./assets";
    newFont(std::string("./assets/acme.ttf"));
 
    this->screen = scr;
@@ -54,6 +55,18 @@ void Widget::set_idType(CTYPES idTypes){
 CTYPES Widget::get_idType(){
    return this->idTypes;
 }
+
+std::string Widget::get_pathAssets()
+{
+   return pathAssets;
+}
+
+void Widget::set_pathAssets(std::string pathAssets)
+{
+   this->pathAssets = pathAssets;
+}
+
+
 
 bool Widget::Connect(Event idEvent, callback* command, std::string argument)
 {

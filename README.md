@@ -87,8 +87,8 @@ namespace scr {
 			bool 		enabled			//. Si esta disponible
 			bool 		focused			//. Si tiene Focus Activo
 			
-			Screen *focusNext			//. Siguiente Screen a focalizar
-			Screen *focusPrevio			//. Anterior Screen a focalizar
+			Screen 		*focusNext		//. Siguiente Screen a focalizar
+			Screen 		*focusPrevio	//. Anterior Screen a focalizar
 			
 			DIMENSION   dimActual
 			DIMENSION   dimMinima
@@ -119,7 +119,6 @@ namespace scr {
 			Screen_LoadFromFile(filename)
 	
 		}
-		
 	}
 
 	class Widget {
@@ -184,7 +183,7 @@ namespace scr {
 			void setFactorMargen(DIMENSION m)
 			DIMENSION getFactorMargen()
 			
-			std::string toString()			//. Retorna un String texto con los parametros configurados
+			std::string toString()		//. Retorna un String texto con los parametros configurados
 		
 			virtual Display(sf::RenderWindow *m)
 			virtual Update()
@@ -200,8 +199,8 @@ namespace scr {
 			class ButtonRadio;
 			class ButtonCheck;
 		class Rect
-			class RectTexture;
 			class RectColor;
+			class RectTexture;
 			
 		class H_BOX;
 		class V_BOX;

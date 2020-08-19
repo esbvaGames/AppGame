@@ -138,7 +138,7 @@ enum Event {
 };
 
 enum CTYPES {
-   CLabel, CButton, CButtonRadio, CButtonCheck, CButtonTexture //.
+   CLabel, CButton, CButtonRadio, CButtonCheck, CButtonTexture, CRectangle //.
 };
 
 enum STATES {
@@ -150,6 +150,8 @@ class Label;
 class Button;
 class ButtonCheck;
 class ButtonRadio;
+class ButtonTexture;
+class Rectangle;
 
 //. El objeto que envia se ubica por el idKey de la tabla
 struct EVENTS;
@@ -221,8 +223,9 @@ class Screen
       friend Label  *Create_Label(Screen *m, float, float, std::string, float);
       friend Button *Create_Button(Screen *m, float, float, std::string, float);
       friend ButtonRadio *Create_Option(Screen *m, float, float, std::string, float, std::string);
-      friend void Option_Update(std::string idKey, std::string idGroup);
       friend ButtonCheck *Create_Check(Screen *m, float, float, std::string, float);
+      friend Rectangle *Create_Rectangle(Screen *m, float, float, float, float);
+      friend Rectangle *Create_RectImage(Screen *m, float, float, float, float, std::string);
 
    protected:
       sf::Font     fontBase;     //. Fuente predeterminada
@@ -260,7 +263,7 @@ class Screen
       std::string  pathAssets;   //. Ruta a los Assetes Predeterminados
 };
 
-/*  FUNCIONES FRIEND */
-void Option_Update(std::string, std::string);
-
 #endif // SCREEN_HPP
+
+
+

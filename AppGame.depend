@@ -1,23 +1,26 @@
 # depslib dependency file v1.0
-1597784675 source:c:\documents\codeblocks\appgame\main.cpp
+1597795844 source:c:\documents\codeblocks\appgame\main.cpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<iostream>
-	"Screen.hpp"
-	"Widget.hpp"
-	"Label.hpp"
-	"Button.hpp"
-	"ButtonRadio.hpp"
+	<Screen.hpp>
+	<Widget.hpp>
+	<Label.hpp>
+	<Button.hpp>
+	<ButtonRadio.hpp>
+	<ButtonCheck.hpp>
+	<Rectangle.hpp>
 
-1597787947 source:c:\documents\codeblocks\appgame\src\screen.cpp
-	"Screen.hpp"
-	"Widget.hpp"
-	"Label.hpp"
-	"Button.hpp"
-	"ButtonRadio.hpp"
-	"ButtonCheck.hpp"
+1597795423 source:c:\documents\codeblocks\appgame\src\screen.cpp
+	<Screen.hpp>
+	<Widget.hpp>
+	<Label.hpp>
+	<Button.hpp>
+	<ButtonRadio.hpp>
+	<ButtonCheck.hpp>
+	<Rectangle.hpp>
 
-1597785962 c:\documents\codeblocks\appgame\include\screen.hpp
+1597795075 c:\documents\codeblocks\appgame\include\screen.hpp
 	<SFML/Graphics.hpp>
 	<SFML/Window.hpp>
 	<cassert>
@@ -32,13 +35,13 @@
 	<Screen.hpp>
 	<Widget.hpp>
 
-1597784665 c:\documents\codeblocks\appgame\include\widget.hpp
+1597795239 c:\documents\codeblocks\appgame\include\widget.hpp
 	<Screen.hpp>
 
-1597784665 source:c:\documents\codeblocks\appgame\src\widget.cpp
-	<widget.hpp>
+1597795343 source:c:\documents\codeblocks\appgame\src\widget.cpp
+	<Widget.hpp>
 
-1597786323 source:c:\documents\codeblocks\appgame\src\button.cpp
+1597788044 source:c:\documents\codeblocks\appgame\src\button.cpp
 	"Button.hpp"
 
 1597786323 c:\documents\codeblocks\appgame\include\button.hpp
@@ -58,4 +61,11 @@
 
 1597786440 source:c:\documents\codeblocks\appgame\src\buttoncheck.cpp
 	"ButtonCheck.hpp"
+
+1597795885 source:c:\documents\codeblocks\appgame\src\rectangle.cpp
+	"Rectangle.hpp"
+
+1597795517 c:\documents\codeblocks\appgame\include\rectangle.hpp
+	<Screen.hpp>
+	<Widget.hpp>
 

@@ -5,6 +5,7 @@
 		<Option title="AppGame" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="/assets/" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/AppGame" prefix_auto="1" extension_auto="1" />
@@ -48,6 +49,7 @@
 		<Unit filename="include/ButtonCheck.hpp" />
 		<Unit filename="include/ButtonRadio.hpp" />
 		<Unit filename="include/Label.hpp" />
+		<Unit filename="include/Rectangle.hpp" />
 		<Unit filename="include/Screen.hpp" />
 		<Unit filename="include/Widget.hpp" />
 		<Unit filename="main.cpp" />
@@ -55,6 +57,7 @@
 		<Unit filename="src/ButtonCheck.cpp" />
 		<Unit filename="src/ButtonRadio.cpp" />
 		<Unit filename="src/Label.cpp" />
+		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/Screen.cpp" />
 		<Unit filename="src/Widget.cpp" />
 		<Extensions>
